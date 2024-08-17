@@ -568,6 +568,19 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.data.downScroll)
 			botplayTxt.y = timeBar.y - 78;
 
+		// WATERMARK CODE TAKEN FROM OS ENGINE, FULL CREDITS TO WHOEVER MADE THE CODE FOR IT
+		songTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
+		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songTxt.scrollFactor.set();
+		songTxt.borderSize = 1;
+		if (!ClientPrefs.hideWatermark && !ClientPrefs.hideHud) {
+			songTxt.visible = true;
+		} else {
+			songTxt.visible = false;
+		}
+		add(songTxt);
+		songTxt.text = curSong + " (" + storyDifficultyText + ") " + "| Null Engine v" + MainMenuState.nullEngineVersion; // psst, hey, heres where the watermark is :3
+
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
