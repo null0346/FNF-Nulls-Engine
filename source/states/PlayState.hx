@@ -218,7 +218,6 @@ class PlayState extends MusicBeatState
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
-	var watermark:FlxText;
 	public static var seenCutscene:Bool = false;
 	public static var deathCounter:Int = 0;
 
@@ -1054,7 +1053,7 @@ class PlayState extends MusicBeatState
 
 	inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
 	{
-
+		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
 		spr.cameras = [camHUD];
 		spr.scrollFactor.set();
 		spr.updateHitbox();
