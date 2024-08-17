@@ -215,7 +215,7 @@ class PlayState extends MusicBeatState
 	public var scoreTxt:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
-	var songTxt:FlxText;
+	var watermark:FlxText;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -551,13 +551,20 @@ class PlayState extends MusicBeatState
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
 
-		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
+		scoreTxt = new FlxText(12, healthBar.y + 24, FlxG.width, "", 8);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.data.hideHud;
 		updateScore(false);
 		uiGroup.add(scoreTxt);
+
+		watermark = new FlxText(scoreTxt.x + 0, scoreTxt.y + 30, 697, curSong + " " + storyDifficultyText + " - Null Engine v" + MainMenuState.nullEngineVersion, 20);
+		watermark.scrollFactor.set();
+		watermark.borderSize = 1.25;
+		watermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		watermark.visible = !ClientPrefs.data.hideHud;
+		add(watermark); // watermark code taken from https://gamebanana.com/tuts/15047
 
 		botplayTxt = new FlxText(400, timeBar.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -568,23 +575,10 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.data.downScroll)
 			botplayTxt.y = timeBar.y - 78;
 
-		// WATERMARK CODE TAKEN FROM OS ENGINE, FULL CREDITS TO WHOEVER MADE THE CODE FOR IT
-		songTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
-		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		songTxt.scrollFactor.set();
-		songTxt.borderSize = 1;
-		if (ClientPrefs.data.hideHud) {
-			songTxt.visible = true;
-		} else {
-			songTxt.visible = false;
-		}
-		add(songTxt);
-		songTxt.text = curSong + " (" + storyDifficultyText + ") " + "| Null Engine v" + MainMenuState.nullEngineVersion; // psst, hey, heres where the watermark is :3
-
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
-		songTxt.cameras = [camHUD];
+		watermark.cameras = [camHUD];
 
 		startingSong = true;
 
