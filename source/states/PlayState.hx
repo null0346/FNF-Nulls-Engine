@@ -215,6 +215,7 @@ class PlayState extends MusicBeatState
 	public var scoreTxt:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
+	var songTxt:FlxText;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -568,17 +569,17 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBar.y - 78;
 
 		// WATERMARK CODE TAKEN FROM OS ENGINE, FULL CREDITS TO WHOEVER MADE THE CODE FOR IT
-		watermark = new FlxText(12, FlxG.height - 24, 0, "", 8);
-		watermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		watermark.scrollFactor.set();
-		watermark.borderSize = 1;
+		songTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
+		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songTxt.scrollFactor.set();
+		songTxt.borderSize = 1;
 		if (ClientPrefs.data.hideHud) {
-			watermark.visible = true;
+			songTxt.visible = true;
 		} else {
-			watermark.visible = false;
+			songTxt.visible = false;
 		}
-		add(watermark);
-		watermark.text = curSong + " (" + storyDifficultyText + ") " + "| Null Engine v" + MainMenuState.nullEngineVersion; // psst, hey, heres where the watermark is :3
+		add(songTxt);
+		songTxt.text = curSong + " (" + storyDifficultyText + ") " + "| Null Engine v" + MainMenuState.nullEngineVersion; // psst, hey, heres where the watermark is :3
 
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
