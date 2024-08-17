@@ -218,6 +218,7 @@ class PlayState extends MusicBeatState
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
+	var watermark:FlxText;
 	public static var seenCutscene:Bool = false;
 	public static var deathCounter:Int = 0;
 
@@ -1041,6 +1042,19 @@ class PlayState extends MusicBeatState
 	inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
 	{
 		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
+		
+        watermark = new FlxText(scoreTxt.x + 10, scoreTxt.y, 675, "Null Engine v" + MainMenuState.nullEngineVersion, 20);
+
+        watermark.scrollFactor.set();
+
+        watermark.borderSize = 1.25;
+
+        watermark.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+
+        watermark.visible = !ClientPrefs.hideHud;
+
+        add(watermark);
+
 		spr.cameras = [camHUD];
 		spr.scrollFactor.set();
 		spr.updateHitbox();
@@ -1300,20 +1314,6 @@ class PlayState extends MusicBeatState
 		// NEW SHIT
 		noteData = songData.notes;
 
-		// THE WATERMARK CODE WAS TAKEN FROM OS ENGINE, FULL CREDITS TO WHOEVER MADE THAT CODE
-
-//		songTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
-//		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-//		songTxt.scrollFactor.set();
-//		songTxt.borderSize = 1;
-//		if (!ClientPrefs.hideWatermark && !ClientPrefs.hideHud) {
-//			songTxt.visible = true;
-//		} else {
-//			songTxt.visible = false;
-//		}
-//		add(songTxt);
-//		songTxt.text = curSong + " (" + storyDifficultyText + ") " + "| Nullspace Engine (PE " + MainMenuState.psychEngineVersion + ")"; // uncomment this if it doesnt work at a different area, keep it commented if it doesnt work here
-		
 		var file:String = Paths.json(songName + '/events');
 		#if MODS_ALLOWED
 		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file))
