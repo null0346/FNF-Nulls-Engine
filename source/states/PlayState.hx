@@ -569,17 +569,17 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBar.y - 78;
 
 		// WATERMARK CODE TAKEN FROM OS ENGINE, FULL CREDITS TO WHOEVER MADE THE CODE FOR IT
-		songTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
-		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		songTxt.scrollFactor.set();
-		songTxt.borderSize = 1;
-		if (!ClientPrefs.hideWatermark && !ClientPrefs.hideHud) {
-			songTxt.visible = true;
+		watermark = new FlxText(12, FlxG.height - 24, 0, "", 8);
+		watermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		watermark.scrollFactor.set();
+		watermark.borderSize = 1;
+		if (ClientPrefs.data.hideHud) {
+			watermark.visible = true;
 		} else {
-			songTxt.visible = false;
+			watermark.visible = false;
 		}
-		add(songTxt);
-		songTxt.text = curSong + " (" + storyDifficultyText + ") " + "| Null Engine v" + MainMenuState.nullEngineVersion; // psst, hey, heres where the watermark is :3
+		add(watermark);
+		watermark.text = curSong + " (" + storyDifficultyText + ") " + "| Null Engine v" + MainMenuState.nullEngineVersion; // psst, hey, heres where the watermark is :3
 
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
@@ -1054,19 +1054,6 @@ class PlayState extends MusicBeatState
 
 	inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
 	{
-		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
-		
-        watermark = new FlxText(scoreTxt.x + 10, scoreTxt.y, 675, "Null Engine v" + MainMenuState.nullEngineVersion, 20);
-
-        watermark.scrollFactor.set();
-
-        watermark.borderSize = 1.25;
-
-        watermark.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-
-        watermark.visible = !ClientPrefs.hideHud;
-
-        add(watermark);
 
 		spr.cameras = [camHUD];
 		spr.scrollFactor.set();
