@@ -1,5 +1,5 @@
-# Null Engine
-Engine used in an upcoming mod called [Bambi: Nullspace](https://discord.gg/MjDUM6T7rg)
+# Null Fork (formerly Null Engine)
+Custom Psych Engine 0.7.3 fork, made by an idiot.
 
 # Building (Windows)
 Use the [setup-windows.bat](setup/setup-windows.bat) script to setup dependencies, and use the [setup-msvc-win.bat](setup/setup-msvc-win.bat) script to setup Microsoft Visual Studio Community.
