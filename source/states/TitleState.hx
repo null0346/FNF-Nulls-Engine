@@ -92,7 +92,7 @@ class TitleState extends MusicBeatState
 		#if CHECK_FOR_UPDATES
 		if(ClientPrefs.data.checkForUpdates && !closedState) {
 			trace('checking for update');
-			var http = new haxe.Http("https://raw.githubusercontent.com/ShadowMario/FNF-PsychEngine/main/gitVersion.txt");
+			var http = new haxe.Http("https://raw.githubusercontent.com/SaturnGD/FNF-Null-Fork/refs/heads/main/gitVersion.txt");
 
 			http.onData = function (data:String)
 			{
@@ -549,14 +549,14 @@ class TitleState extends MusicBeatState
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Null Engine by'], 40);
+					createCoolText(['Null Fork by'], 40);
 					#else
-					createCoolText(['Null', 'and', 'nobody', 'else']);
+					createCoolText(['exec', 'and', 'nobody', 'else']);
 					#end
 				case 4:
 					#if PSYCH_WATERMARKS
-					addMoreText('Null', 40);
-					addMoreText('Null', 40);
+					addMoreText('exec', 40);
+					addMoreText('exec', 40);
 					#else
 					addMoreText('present');
 					#end
@@ -585,7 +585,7 @@ class TitleState extends MusicBeatState
 				case 15:
 					addMoreText('Null');
 				case 16:
-					addMoreText('Engine'); // credTextShit.text += '\nFunkin';
+					addMoreText('Fork'); // credTextShit.text += '\nFunkin';
 
 				case 17:
 					skipIntro();
