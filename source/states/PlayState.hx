@@ -559,7 +559,7 @@ class PlayState extends MusicBeatState
 		updateScore(false);
 		uiGroup.add(scoreTxt);
 
-		watermark = new FlxText(scoreTxt.x + 0, scoreTxt.y + 30, 697, curSong + " " + storyDifficultyText + " - Null Engine v" + MainMenuState.nullEngineVersion, 20);
+		watermark = new FlxText(scoreTxt.x + 0, scoreTxt.y + 30, 697, curSong + " " + storyDifficultyText + " - Null Fork v" + MainMenuState.nullEngineVersion, 20);
 		watermark.scrollFactor.set();
 		watermark.borderSize = 1.25;
 		watermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
